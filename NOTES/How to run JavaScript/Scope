@@ -1,0 +1,200 @@
+/*
+
+SCOPE
+1.The scope is the current context of execution in which values and expressions are "visible" orcan be referenced. 
+2.If a variable or expression is not in the current scope,
+3.it will not be available for use.
+4.Scopes can also be layered in a hierarchy,
+5.so that child scopes have access to parent scopes,
+6.but not vice versa.
+
+JavaScript has the following kinds of scopes:
+
+1.Global scope: The default scope for all code running in script mode.
+2.Module scope: The scope for code running in module mode.
+3.Function scope: The scope created with a function.
+In addition, identifiers declared with certain syntaxes,
+including let, const, class, or (in strict mode) function, can belong to an additional scope:
+
+4.Block scope: The scope created with a pair of curly braces (a block).
+A function creates a scope, so that (for example)
+a variable defined exclusively within the function cannot be accessed from outside the function or
+within other functions. For instance, the following is invalid:
+
+Invalid
+
+function exampleFunction() {
+  const x = "declared inside function"; // x can only be used in exampleFunction
+console.log("Inside function");
+console.log(x);
+}
+console.log(x); // Causes error
+
+However,the following code is valid due to the variable being declared outside the function,
+making it global:
+
+const x = "declared outside function";
+
+exampleFunction();
+
+function exampleFunction() {
+console.log("Inside function");
+console.log(x);
+}
+
+console.log("Outside function");
+console.log(x);
+
+Blocks only scope let and const declarations, but not var declarations.
+{
+var x = 1;
+}
+console.log(x); // 1
+
+{
+const x = 1;
+}
+console.log(x); // ReferenceError: x is not defined
+
+
+
+
+
+1. Global Scope
+
+A variable declared outside any function or block belongs to the global scope.
+
+let name = "Rahul";
+
+function greet() {
+    console.log(name);
+}
+
+greet();
+console.log(name);
+
+Output- Rahul Rahul
+
+Why?
+
+name is global, so it can be accessed from anywhere.
+
+Global Scope
+│
+├── name = "Rahul"
+│
+├── greet()
+│      │
+│      └── can access name
+│
+└── console.log(name)
+
+
+
+
+
+2. Function Scope
+
+Variables declared inside a function exist only inside that function.
+
+function greet() {
+    let message = "Hello";
+    console.log(message);
+}
+
+greet();
+console.log(message);
+
+Output(Hello
+ReferenceError: message is not defined)
+
+
+Why?
+
+message lives only inside greet().
+
+Global Scope
+│
+└── greet()
+      │
+      └── message = "Hello"
+
+Outside the function:
+
+console.log(message); ❌
+
+JavaScript says:
+
+"I don't know what message is."
+
+
+
+3. Block Scope
+
+Variables declared with let and const exist only inside {}.
+
+{
+    let age = 22;
+    console.log(age);
+}
+
+console.log(age);
+Output
+22
+ReferenceError: age is not defined
+
+Because age only exists inside the block.
+
+{
+    age = 22
+}
+
+Outside:
+
+age ❌
+Another Example
+let a = 10;
+
+{
+    let b = 20;
+
+    console.log(a);
+    console.log(b);
+}
+
+console.log(a);
+console.log(b);
+
+Output
+
+10
+20
+10
+ReferenceError
+Why?
+
+Inside the block:
+
+Global
+│
+├── a = 10
+│
+└── Block
+      │
+      ├── b = 20
+      ├── can use a ✅
+      └── can use b ✅
+
+Outside the block:
+
+Global
+│
+├── a = 10 ✅
+└── b ❌
+
+Global
+
+
+
+
+*/

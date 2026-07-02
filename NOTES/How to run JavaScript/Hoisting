@@ -1,0 +1,52 @@
+/*What is Hoisting in JavaScript ?
+
+-Hoisting means that before JavaScript executes your code, it registers declarations (variables, functions, classes, imports) in memory. It looks like they are moved to the top of their scope, although the code itself is not actually moved.
+
+1. Function Hoisting (You can use it before declaration) ✅
+sayHello(); // it will hoist
+
+function sayHello() {
+  console.log("Hello");
+}
+2. var Hoisting (Declaration only) ⚠️
+console.log(a); (undfined)
+
+var a = 10;
+
+JavaScript knows that a exists, but the value 10 is assigned only when it reaches that line.
+
+It behaves like:
+
+var a;
+console.log(a);
+a = 10;
+
+3. let and const Hoisting (Temporal Dead Zone)
+
+console.log(b);
+
+let b = 20;
+
+JavaScript knows b exists, but it does not allow you to use it until its declaration line is reached. This period is called the Temporal Dead Zone (TDZ).
+
+4. Block Scope Example
+const x = 1;
+
+{
+  console.log(x); // ReferenceError
+  const x = 2;
+}
+
+Even though there is an outer x, the inner const x exists for the whole block and blocks access to the outer one until it is initialized.
+
+Easy Way to Remember
+Type 	    Hoisted?	Access Before Declaration
+Function	  Yes         (fully)✅ Works
+var	          Yes	    ⚠️ Gives undefined
+let	          Yes	   ❌ ReferenceError (TDZ)
+const	      Yes	   ❌ ReferenceError (TDZ)
+class	      Yes	   ❌ ReferenceError (TDZ)
+
+One-Line Definition:
+
+Hoisting is JavaScript's behavior of setting up declarations before running the code, which determines whether you can access them before their declaration.*/
